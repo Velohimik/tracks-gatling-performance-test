@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class InputDataGenerator {
 
-    public static String generateRandomName() {
+    public static String generateRandomNameWithLength() {
         return RandomStringUtils.randomAlphanumeric(10);
     }
 

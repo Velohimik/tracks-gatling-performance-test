@@ -1,0 +1,1 @@
+INSERT INTO contexts (id, created_at, name, position, state, updated_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);
