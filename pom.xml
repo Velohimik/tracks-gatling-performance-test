@@ -4,33 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ua.com.example</groupId>
-    <artifactId>getontracks-e2e-gatling</artifactId>
+    <groupId>com.tracks</groupId>
+    <artifactId>tracks-gatling-performance-api-test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.28</lombok.version>
         <common.lang3.version>3.12.0</common.lang3.version>
         <gatling.version>3.9.5</gatling.version>
-        <spring.jdbc.version>5.3.24</spring.jdbc.version>
-        <jackson.dataformat.xml.version>2.14.2</jackson.dataformat.xml.version>
         <gatling-maven-plugin.version>4.3.0</gatling-maven-plugin.version>
+        <httpclient.version>4.5.14</httpclient.version>
+        <jackson-dataformat-xml.version>2.16.0</jackson-dataformat-xml.version>
+        <lombok.version>1.18.28</lombok.version>
         <mariadb.jdbs.version>3.1.2</mariadb.jdbs.version>
-        <jakarta.xml.version>4.0.0</jakarta.xml.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <owner.version>1.0.12</owner.version>
-        <commons-io.version>2.13.0</commons-io.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <retrofit.version>2.9.0</retrofit.version>
+        <spring.jdbc.version>5.3.24</spring.jdbc.version>
+        <testng.version>7.8.0</testng.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>io.gatling.highcharts</groupId>
-            <artifactId>gatling-charts-highcharts</artifactId>
-            <version>${gatling.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -38,15 +33,20 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.jdbc.version}</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <version>${gatling.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>${mariadb.jdbs.version}</version>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson-dataformat-xml.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -55,9 +55,31 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>${mariadb.jdbs.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.aeonbits.owner</groupId>
             <artifactId>owner</artifactId>
             <version>${owner.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.jdbc.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -70,5 +92,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

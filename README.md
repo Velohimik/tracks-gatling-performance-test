@@ -18,7 +18,7 @@ https://www.getontracks.org/
 ## Run performance test
 
 - build Docker image: ```docker build -t tracks-gatling-test .```<br><br>
-- run Docker container: ```docker run -v ${PWD}/target:/perf-test/target --network=tracks_perform -e MAVEN_OPTS="-DpropertyName1=value1 -DpropertyName2=value2" tracks-gatling-test```<br><br>
+- run Docker container: ```docker run --rm -v ${PWD}/target:/perf-test/target --network=tracks_perform -e MAVEN_OPTS="-DpropertyName1=value1 -DpropertyName2=value2" tracks-gatling-test```<br><br>
 - the next environmental properties are available for test configuration:<br>
 
 | Property name                   | Enable values                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
