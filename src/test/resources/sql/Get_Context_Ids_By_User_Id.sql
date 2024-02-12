@@ -1,0 +1,1 @@
+select id from contexts where user_id = '%s';

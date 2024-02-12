@@ -1,1 +1,0 @@
-SELECT COALESCE(MAX(your_id_column), 0) AS last_id FROM your_table;

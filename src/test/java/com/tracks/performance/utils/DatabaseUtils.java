@@ -1,35 +1,39 @@
 package com.tracks.performance.utils;
 
-import com.tracks.conf.TestConfiguration;
-import org.aeonbits.owner.ConfigFactory;
+import static com.tracks.performance.TestSimulation.TEST_CONFIGURATION;
+import static com.tracks.performance.enums.RuntimeProperties.RUNTIME_ENV;
+
+import java.util.List;
+import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import javax.sql.DataSource;
-
 public class DatabaseUtils {
 
-    private static final TestConfiguration TEST_CONFIGURATION = ConfigFactory.create(TestConfiguration.class);
     private static final JdbcTemplate jdbcTemplate = new JdbcTemplate(setupDatabaseConnection());
 
     private static DataSource setupDatabaseConnection() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
         dataSource.setDriverClassName(TEST_CONFIGURATION.databaseDriver());
-        dataSource.setUrl(TEST_CONFIGURATION.databaseUrl());
+        dataSource.setUrl(getDatabaseUrl());
         dataSource.setUsername(TEST_CONFIGURATION.databaseUsername());
         dataSource.setPassword(TEST_CONFIGURATION.databasePassword());
-        return dataSource;
-    }
 
-    public static void insertValuesQuery(String query, Object[] args) {
-        jdbcTemplate.update(query, args);
+        return dataSource;
     }
 
     public static void executeSimpleQuery(String query) {
         jdbcTemplate.update(query);
     }
 
-    public static int getValueQuery(String query) {
-        return jdbcTemplate.update(query);
+    public static List<Integer> getListOfValuesQuery(String query) {
+        return jdbcTemplate.queryForList(query, Integer.class);
+    }
+
+    private static String getDatabaseUrl() {
+        return "maven".equals(RUNTIME_ENV.getStringValue())
+                ? TEST_CONFIGURATION.mavenDatabaseUrl()
+                : TEST_CONFIGURATION.dockerDatabaseUrl();
     }
 }

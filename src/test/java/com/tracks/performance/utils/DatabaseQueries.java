@@ -1,38 +1,47 @@
 package com.tracks.performance.utils;
 
-import com.tracks.conf.TestConfiguration;
-import com.tracks.models.Context;
-import org.aeonbits.owner.ConfigFactory;
+import static com.tracks.performance.TestSimulation.TEST_CONFIGURATION;
+
+import java.util.List;
+import java.util.Random;
 
 public class DatabaseQueries {
 
-    private static final TestConfiguration TEST_CONFIGURATION = ConfigFactory.create(TestConfiguration.class);
-    private static final String QUERIES_FOLDER = TEST_CONFIGURATION.sqlQueriesFolder();
+  private static final String QUERIES_FOLDER = TEST_CONFIGURATION.sqlQueriesFolder();
 
-    public static void insertContextToDatabaseTable(Context context) {
-        DatabaseUtils.insertValuesQuery(
-                FileUtils.readFromFile(QUERIES_FOLDER + "Insert_Values_To_Context_Table.sql"),
-                new Object[]{
-                        context.getId(),
-                        context.getCreateAt(),
-                        context.getName(),
-                        context.getPosition(),
-                        context.getState(),
-                        context.getUpdateAt(),
-                        context.getUserId()
-                }
-        );
-    }
+  public static int getRandomNotAdminUserId() {
+    List<Integer> userIds =
+        DatabaseUtils.getListOfValuesQuery(
+            FileUtils.readFromFile(QUERIES_FOLDER + "Get_All_Not_Admin_User_Ids.sql"));
 
-    public static void deleteItemFromContextTableCreatedByUser(String user) {
-        DatabaseUtils.executeSimpleQuery(
-                String.format(FileUtils.readFromFile(QUERIES_FOLDER + "Delete_Values_From_Context_Table_Created_By_User.sql"), user)
-        );
-    }
+    return userIds.isEmpty() ? 0 : userIds.get(InputDataGenerator.returnRandomItemFromList(userIds));
+  }
 
-    public static int getLastContextId() {
-        return DatabaseUtils.getValueQuery(
-                FileUtils.readFromFile(QUERIES_FOLDER + "Get_Last_Context_Id.sql")
-        );
-    }
+  public static void deleteAllNotAdminUsers() {
+    DatabaseUtils.executeSimpleQuery(
+        FileUtils.readFromFile(QUERIES_FOLDER + "Delete_All_Not_Admin_Users.sql"));
+  }
+
+  public static void deleteAllContexts() {
+    DatabaseUtils.executeSimpleQuery(
+        FileUtils.readFromFile(QUERIES_FOLDER + "Delete_All_Contexts.sql"));
+  }
+
+  public static int getUserIdByUserLogin(String login) {
+    List<Integer> users = DatabaseUtils.getListOfValuesQuery(
+            String.format(
+                    FileUtils.readFromFile(QUERIES_FOLDER + "Get_User_Id_By_User_Login.sql"), login
+            )
+    );
+
+    return users.isEmpty() ? 0 : users.get(0);
+  }
+
+  public static List<Integer> getContextIdsByUserId(int userId) {
+    return DatabaseUtils.getListOfValuesQuery(
+            String.format(
+                    FileUtils.readFromFile(QUERIES_FOLDER + "Get_Context_Ids_By_User_Id.sql"), userId
+            )
+    );
+  }
 }
