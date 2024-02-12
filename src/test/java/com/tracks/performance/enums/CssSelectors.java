@@ -1,9 +1,14 @@
 package com.tracks.performance.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum CssSelectors {
-  CSRF_TOKEN_XPATH("meta[name=\"csrf-token\"]"),
+
+  CSRF_TOKEN_SELECTOR("meta[name=\"csrf-token\"]"),
   AUTHENTICITY_TOKEN_SELECTOR("input[name=\"authenticity_token\"]"),
-  VIEW_CONTEXT("a[title^=\"View context\"]");
+  VIEW_CONTEXT_SELECTOR("a[title^=\"View context\"]");
+
 
   private final String selector;
 
@@ -11,7 +16,4 @@ public enum CssSelectors {
     this.selector = selector;
   }
 
-  public String getExpression() {
-    return selector;
-  }
 }

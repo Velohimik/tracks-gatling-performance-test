@@ -5,45 +5,45 @@ import org.aeonbits.owner.Config;
 @Config.Sources("classpath:settings/TestConfiguration.properties")
 public interface TestConfiguration extends Config {
 
-    @Key("base.url")
-    String baseUrl();
+  @Key("docker.base.url")
+  String dockerBaseUrl();
 
-    @Key("context.endpoint")
-    String contextEndpoint();
+  @Key("maven.base.url")
+  String mavenBaseUrl();
 
-    @Key("admin.login")
-    String login();
+  @Key("context.endpoint")
+  String contextEndpoint();
 
-    @Key("admin.password")
-    String password();
+  @Key("database.driver")
+  String databaseDriver();
 
-    @Key("database.driver")
-    String databaseDriver();
+  @Key("docker.database.url")
+  String dockerDatabaseUrl();
 
-    @Key("database.url")
-    String databaseUrl();
+  @Key("maven.database.url")
+  String mavenDatabaseUrl();
 
-    @Key("database.username")
-    String databaseUsername();
+  @Key("database.username")
+  String databaseUsername();
 
-    @Key("database.password")
-    String databasePassword();
+  @Key("database.password")
+  String databasePassword();
 
-    @Key("admin.login")
-    String adminLogin();
+  @Key("admin.login")
+  String adminLogin();
 
-    @Key("admin.password")
-    String adminPassword();
+  @Key("admin.password")
+  String adminPassword();
 
-    @Key("sql.queries.folder")
-    String sqlQueriesFolder();
+  @Key("sql.queries.folder")
+  String sqlQueriesFolder();
 
-    @Key("signup.endpoint")
-    String signUpEndpoint();
+  @Key("signup.endpoint")
+  String signUpEndpoint();
 
-    @Key("users.endpoint")
-    String usersEndpoint();
+  @Key("users.endpoint")
+  String usersEndpoint();
 
-    @Key("login.endpoint")
-    String loginEndpoint();
+  @Key("login.endpoint")
+  String loginEndpoint();
 }
