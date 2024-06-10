@@ -3,17 +3,21 @@
 There are the performance tests using Gatling framework https://gatling.io/ of the Tracks application 
 https://www.getontracks.org/
 
-## Prepare database
+## Run application using Docker
+### Prepare database
 - For Windows: go to`application/windows` and run `config-database.bat`
 
 
 - For Linux: go to`application/linux` and run `config-database.sh`
 
-## Run application
+### Run application
 - For Windows: go to`application/windows` and run `start-tracks.bat`
 
 
 - For Linux: go to`application/linux` and run `start-tracks.sh`
+
+## Run application using Docker Compose
+- Run `docker compose up`
 
 ## Run performance test
 
@@ -35,11 +39,14 @@ https://www.getontracks.org/
 | peakRps                         | Integer                                                      | The rps value during spike in *rpsPeaks* injection profile, default value: 100 rps                                                                                                                                                                                                                                                                                                                                        |
 | timeBetweenPeak                 | Integer                                                      | Time between spiked peak rps in *rpsPeaks* injection profile, default value: 20 sec                                                                                                                                                                                                                                                                                                                                       | 
 
-## Stop application and clear database
+## Stop application and clear database that was run with Docker
 - For Windows: go to`application/windows`. Stop Tracks app with running `stop-tracks.bat`. 
 Remove app database with running `remove-database.bat`.<br><br>
 - For Linux: go to`application/linux`. Stop Tracks app with running `stop-tracks.sh`. 
 Remove app database with running `remove-database.sh`.
+
+## Stop application that was run with Docker Compose
+- Run `docker compose down`
 
 ## Gatling report
 

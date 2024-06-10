@@ -1,0 +1,25 @@
+services:
+    tracks:
+        image: tracksapp/tracks
+        ports:
+            - "3000:3000"
+        networks:
+            - tracks_perform
+        depends_on:
+            - mariadb
+        links:
+            - mariadb:db
+    mariadb:
+        image: mariadb:lts
+        ports:
+            - "3306:3306"
+        networks:
+            - tracks_perform
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - ./application/sql/:/docker-entrypoint-initdb.d/
+
+networks:
+    tracks_perform:
+        driver: bridge
